@@ -3,7 +3,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        build 'Javacord'
+        catchError() {
+          sh 'mvn clean install'
+        }
+        
       }
     }
     stage('Release') {
